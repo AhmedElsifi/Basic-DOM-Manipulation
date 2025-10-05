@@ -4,13 +4,10 @@ const display = document.getElementById("display");
 buttons.forEach((button) => {
   button.addEventListener("click", (e) => {
     const action = button.dataset.action;
-    const oldValue = display.textContent;
-    if (action === "increment") {
-      display.textContent = parseInt(oldValue) + 1;
-    } else if (action === "decrement" && parseInt(oldValue)!==0) {
-      display.textContent = parseInt(oldValue) - 1;
-    } else if (action === "reset") {
-      display.textContent = 0;
-    }
+    let value = Number(display.textContent);
+    if (action === "increment") value++;
+    else if (action === "decrement" && value > 0) value--;
+    else if (action === "reset") value = 0;
+    display.textContent = value;
   });
 });
